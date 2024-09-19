@@ -1,7 +1,18 @@
 import json
 import re
+from collections import defaultdict
 
 filepath = "C:\Program Files (x86)\Steam\steamapps\common\GTFO\BepInEx\GameData-Dump\\34855\GameData_LevelLayoutDataBlock_bin.json"
+
+all_logs = []
+
+# manually add logs that are not in the json file
+all_logs.append({
+  'expedition': "R7C2",
+  'zone': "Alpha Six",
+  'id': 3979312916,
+  'name': "D3T-INI-FNI",
+})
 
 def convertZone(zone: str) -> str: 
   pattern = 'R(undown0*)?([1-8])[_ ]*([A-E])[_ ]?([1-4])?'
@@ -18,7 +29,7 @@ def convertZone(zone: str) -> str:
 with open(filepath, "r") as file:
   data = json.load(file)['Blocks']
 
-  count = 0
+  log_count = 0
   for block in data: 
     # get expedition name
     expedition = convertZone(block['name'])
@@ -27,18 +38,48 @@ with open(filepath, "r") as file:
     for zone in zones: 
       if "TerminalPlacements" not in zone: continue  
 
-      # iterate terminals of each zone to get log info
-      for terminal in zone["TerminalPlacements"]:
-        if terminal["LocalLogFiles"] == []: continue
+      # Combine terminal information from both "SpecificTerminalSpawnDatas" and "TerminalPlacements"
+      terminal_sources = []
 
-        terminalInfo = terminal["LocalLogFiles"][0]
-        if "FileContent" not in terminalInfo or "FileName" not in terminalInfo: continue
+      # Collect terminals from SpecificTerminalSpawnDatas if present
+      if "SpecificTerminalSpawnDatas" in zone:
+          terminal_sources.extend(zone["SpecificTerminalSpawnDatas"])
 
-        log_zone = block["ZoneAliasStart"] + zone["LocalIndex"] if zone["AliasOverride"] == -1 else zone["AliasOverride"]
-        log_id = terminalInfo["FileContent"]
-        log_name = terminalInfo["FileName"]
-        
-        count += 1
-        print(expedition, log_zone, log_id, log_name)
+      # Collect terminals from TerminalPlacements
+      if "TerminalPlacements" in zone:
+          terminal_sources.extend(zone["TerminalPlacements"])
 
-  print("Total: " + str(count))
+      # Iterate over all collected terminal sources to extract log information
+      for terminal in terminal_sources:
+          if terminal["LocalLogFiles"] == []: 
+              continue
+
+          terminalInfoList = terminal["LocalLogFiles"]
+          for terminalInfo in terminalInfoList:
+              # Check if required keys are present
+              if "FileContent" not in terminalInfo or "FileName" not in terminalInfo: 
+                  continue
+
+              # Determine the log zone based on conditions
+              log_zone = block["ZoneAliasStart"] + zone["LocalIndex"] if zone["AliasOverride"] == -1 else zone["AliasOverride"]
+              log_id = terminalInfo["FileContent"]
+              log_name = terminalInfo["FileName"]
+
+              # Validate log_id
+              if log_id == "" or log_id == 0: 
+                  continue
+
+              log_count += 1
+              # Create a new log entry and add it to the all_logs list
+              new_log = {"expedition": expedition, "zone": log_zone, "id": log_id, "name": log_name}
+              all_logs.append(new_log)
+
+  all_logs.sort(key=lambda x: x["expedition"])
+
+freq = defaultdict(int)
+for log in all_logs:
+  print(log)
+  freq[log["expedition"][:2]] += 1
+
+print(freq)
+print("Total: " + str(log_count))
