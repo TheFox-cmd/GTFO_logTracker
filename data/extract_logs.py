@@ -88,4 +88,4 @@ print("Total: " + str(log_count))
 with open('./logvisuals/public/logs.json', 'w') as file:
     json.dump(all_logs, file, indent=4)
 
-print("Data has been written to log.json")
+print("Data has been written to logs.json")

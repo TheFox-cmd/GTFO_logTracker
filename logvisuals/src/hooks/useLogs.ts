@@ -14,7 +14,6 @@ const useLogs = () => {
         const data = await response.json();
         console.log(data)
         setLogData(data);
-        setLoading(false);
       };
       fetchLogs();
     } catch (err : any) {
