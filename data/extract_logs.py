@@ -83,3 +83,9 @@ for log in all_logs:
 
 print(freq)
 print("Total: " + str(log_count))
+
+# Write the wrapped log_data to log.json
+with open('./logvisuals/public/logs.json', 'w') as file:
+    json.dump(all_logs, file, indent=4)
+
+print("Data has been written to log.json")
