@@ -28,10 +28,12 @@ const usePlayerLog = () => {
       try {
         const fileContent = await readFileAsText(selectedFile);
 
+        // * Acquire confirmed IDs from the log file
         const confirmedRegex = /AchievementManager \| <b>Achievement_ReadAllLogs<\/b> :: Initialized Data\. Logs Read: (\d+) \/ 188 \| IDs: \[([^\]]*)\]/;
         const confirmedMatch = fileContent.match(confirmedRegex);
-        const confirmedIDList = confirmedMatch ? confirmedMatch[1].split(',').map(id => parseInt(id.trim())) : [];
+        const confirmedIDList = confirmedMatch ? confirmedMatch[2].split(', ').map(id => parseInt(id.trim())) : [];
 
+        // * Acquire unconfirmed IDs from the log file
         const unconfirmedRegex = /AchievementManager \| <b>Achievement_ReadAllLogs<\/b> :: Read New Log: \[(\d+)\] \| \d+ \/ \d+/g;
         const unconfirmedMatch = Array.from(fileContent.matchAll(unconfirmedRegex)); 
         const unconfirmedIDsList = unconfirmedMatch.map(match => parseInt(match[1]));
@@ -48,6 +50,7 @@ const usePlayerLog = () => {
 
     processFile();
   }, [selectedFile]);
+
 
   return { logsRead, confirmedIDs, unconfirmedIDs, uploadFile };
 }
