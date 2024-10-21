@@ -54,3 +54,13 @@ const Rundown = ({ logData }: { logData: Log[] }) => {
 };
 
 export default Rundown;
+
+// deviation, infection, the vessel, contact, rebirth, destination, rise, duality 
+
+// TODO: 
+// * Fuzzy Overlay --------------------------------------------------------- Complete
+// * Card Rundowns 
+// * upload button (red white right side like clipboard)
+// * Table Glitch Levels
+// * hyperlexed text 
+// * cleared green alert page, grayed out checkmark 

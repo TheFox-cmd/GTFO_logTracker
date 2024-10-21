@@ -1,6 +1,9 @@
 import useLogs from "../hooks/useLogs";
 import usePlayerLog from "../hooks/usePlayerLog";
 import Rundown from "./Rundown";
+import Grid from "@mui/material/Grid2";
+import Box from "@mui/material/Box";
+import FuzzyOverlay from "./FuzzyOverlay";
 
 const LogTable = () => {
   const { logData, loading, error } = useLogs();
@@ -15,16 +18,53 @@ const LogTable = () => {
     }
   };
 
-  console.log(logsRead);
-  console.log(confirmedIDs);
-  console.log(unconfirmedIDs);
-
   return (
     <>
-      <form action="/upload" method="post" encType="multipart/form-data">
-        <input type="file" onChange={handleUpload} accept=".log" required />
-      </form>
-      <Rundown logData={logData} />
+      <Box>
+        <Grid
+          container
+          justifyContent="space-between"
+          alignItems="center"
+          color="white"
+        >
+          <Grid
+            container
+            size={2}
+            border="1px solid red"
+            justifyContent="center"
+            alignItems="center"
+            // height="100vh"
+          >
+            Special Thanks
+          </Grid>
+          <Grid
+            container
+            size={6}
+            border="1px solid red"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Rundown logData={logData} />
+          </Grid>
+          <Grid
+            container
+            size={2}
+            border="1px solid red"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <form action="/upload" method="post" encType="multipart/form-data">
+              <input
+                type="file"
+                onChange={handleUpload}
+                accept=".log"
+                required
+              />
+            </form>
+          </Grid>
+        </Grid>
+        <FuzzyOverlay />
+      </Box>
     </>
   );
 };
