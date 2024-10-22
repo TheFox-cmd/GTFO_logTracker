@@ -1,22 +1,23 @@
 import useLogs from "../hooks/useLogs";
 import usePlayerLog from "../hooks/usePlayerLog";
-import Rundown from "./Rundown";
+import GameMenu from "./GameMenu";
 import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import FuzzyOverlay from "./FuzzyOverlay";
+import { useState } from "react";
+import Rundown from "./Rundown";
+import UploadForm from "./UploadForm";
+
 
 const LogTable = () => {
   const { logData, loading, error } = useLogs();
-  const { logsRead, confirmedIDs, unconfirmedIDs, uploadFile } = usePlayerLog();
+  const [currentRundown, setCurrentRundown] = useState<number>(0);
+  const [selectRundown, setSelectRundown] = useState<Boolean>(false);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      uploadFile(event.target.files[0]);
-    }
-  };
+
 
   return (
     <>
@@ -35,7 +36,12 @@ const LogTable = () => {
             alignItems="center"
             // height="100vh"
           >
-            Special Thanks
+            {/* Special Thanks */}
+            {selectRundown ? (
+              <button onClick={() => setSelectRundown(false)}>Select Rundown</button>
+            ) : (
+              <div></div>
+            )}
           </Grid>
           <Grid
             container
@@ -46,7 +52,14 @@ const LogTable = () => {
             alignItems="center"
             height="100vh"
           >
-            <Rundown logData={logData} />
+            {selectRundown ? (
+              <Rundown currentRundown={currentRundown} logData={logData} />
+            ) : (
+              <GameMenu
+                setCurrentRundown={setCurrentRundown}
+                setSelectRundown={setSelectRundown}
+              />
+            )}
           </Grid>
           <Grid
             container
@@ -55,14 +68,7 @@ const LogTable = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <form action="/upload" method="post" encType="multipart/form-data">
-              <input
-                type="file"
-                onChange={handleUpload}
-                accept=".log"
-                required
-              />
-            </form>
+            <UploadForm />
           </Grid>
         </Grid>
         <FuzzyOverlay />
