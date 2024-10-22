@@ -42,7 +42,9 @@ const LogTable = () => {
             size={6}
             border="1px solid red"
             justifyContent="center"
+            spacing={2}
             alignItems="center"
+            height="100vh"
           >
             <Rundown logData={logData} />
           </Grid>
