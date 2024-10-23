@@ -3,3 +3,8 @@ body {
   background-color: black;
   cursor: url('./assets/cursor.png') 25 25, auto;
 }
+
+.MuiButton-root:hover,
+.MuiButton-root:active {
+  cursor: url('./assets/cursor.png') 25 25, auto;
+}

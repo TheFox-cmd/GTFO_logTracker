@@ -1,5 +1,4 @@
 import useLogs from "../hooks/useLogs";
-import usePlayerLog from "../hooks/usePlayerLog";
 import GameMenu from "./GameMenu";
 import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
@@ -7,7 +6,7 @@ import FuzzyOverlay from "./FuzzyOverlay";
 import { useState } from "react";
 import Rundown from "./Rundown";
 import UploadForm from "./UploadForm";
-
+import { Button } from "@mui/material";
 
 const LogTable = () => {
   const { logData, loading, error } = useLogs();
@@ -16,8 +15,6 @@ const LogTable = () => {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
-
 
   return (
     <>
@@ -38,7 +35,23 @@ const LogTable = () => {
           >
             {/* Special Thanks */}
             {selectRundown ? (
-              <button onClick={() => setSelectRundown(false)}>Select Rundown</button>
+              <Button
+                variant="outlined"
+                component="span"
+                onClick={() => setSelectRundown(false)}
+                sx={{
+                  border: "3px solid white",
+                  color: "white",
+                  height: "100%",
+                  width: "70%",
+                  bgcolor: "transparent",
+                  "&:hover": {
+                    bgcolor: "transparent",
+                  },
+                }}
+              >
+                Select Rundown
+              </Button>
             ) : (
               <div></div>
             )}

@@ -1,10 +1,10 @@
 import './App.css'
-import LogTable from './components/LogTable'
+import Display from './components/Display'
 
 function App() {
   return (
     <>
-      <LogTable />
+      <Display />
     </>
   )
 }

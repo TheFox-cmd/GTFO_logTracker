@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Log from "../types/log";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import CardActions from "@mui/material/CardActions";
-import Button from "@mui/material/Button";
 import R1 from "../assets/ALT_R1_Banner.png";
 import R2 from "../assets/ALT_R2_Banner.png";
 import R3 from "../assets/ALT_R3_Banner.png";
@@ -43,6 +39,10 @@ const GameMenu: React.FC<GameMenuProps> = ({
           title="ALT://RUNDOWN 1.0 - DEVIATION"
           sx={{
             height: "8vh",
+            transition: "height 0.3s cubic-bezier(0.4, 0.8, 0.25, 1)", 
+            "&:hover": {
+              height: "12vh", 
+            },
           }}
         />
       </Card>
@@ -66,6 +66,10 @@ const GameMenu: React.FC<GameMenuProps> = ({
             height: "8vh",
             objectFit: "cover",
             objectPosition: "0 22%",
+            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
+            "&:hover": {
+              height: "12vh", 
+            },
           }}
         />
       </Card>
@@ -87,6 +91,10 @@ const GameMenu: React.FC<GameMenuProps> = ({
           title="ALT://RUNDOWN 3.0 - THE VESSEL"
           sx={{
             height: "8vh",
+            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
+            "&:hover": {
+              height: "12vh", 
+            },
           }}
         />
       </Card>
@@ -108,6 +116,10 @@ const GameMenu: React.FC<GameMenuProps> = ({
           title="ALT://RUNDOWN 4.0 - CONTACT"
           sx={{
             height: "8vh",
+            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
+            "&:hover": {
+              height: "12vh", 
+            },
           }}
         />
       </Card>
@@ -129,6 +141,10 @@ const GameMenu: React.FC<GameMenuProps> = ({
           title="ALT://RUNDOWN 5.0 - REBIRTH"
           sx={{
             height: "8vh",
+            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
+            "&:hover": {
+              height: "12vh", 
+            },
           }}
         />
       </Card>
@@ -150,6 +166,10 @@ const GameMenu: React.FC<GameMenuProps> = ({
           title="ALT://RUNDOWN 6.0 - DESTINATION"
           sx={{
             height: "8vh",
+            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
+            "&:hover": {
+              height: "12vh", 
+            },
           }}
         />
       </Card>
@@ -171,6 +191,10 @@ const GameMenu: React.FC<GameMenuProps> = ({
           title="RUNDOWN 7.0 - RISE"
           sx={{
             height: "8vh",
+            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
+            "&:hover": {
+              height: "12vh", 
+            },
           }}
         />
       </Card>
@@ -192,6 +216,10 @@ const GameMenu: React.FC<GameMenuProps> = ({
           title="RUNDOWN 8.0 - DUALITY"
           sx={{
             height: "8vh",
+            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
+            "&:hover": {
+              height: "12vh", 
+            },
           }}
         />
       </Card>

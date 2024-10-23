@@ -70,7 +70,12 @@ with open(filepath, "r") as file:
                   continue
 
               log_count += 1
+
               # Create a new log entry and add it to the all_logs list
+              if expedition == "R6A2": expedition = "R6AX"
+              elif expedition == "R6B3": expedition = "R6BX"
+              elif expedition == "R6C4": expedition = "R6CX"
+              
               new_log = {"expedition": expedition, "zone": log_zone, "id": log_id, "name": log_name}
               all_logs.append(new_log)
 

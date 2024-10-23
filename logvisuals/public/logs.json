@@ -582,13 +582,13 @@
         "name": "PUT-THX-3DX"
     },
     {
-        "expedition": "R6A2",
+        "expedition": "R6AX",
         "zone": 16,
         "id": 3018560530,
         "name": "R5L-NLL-023"
     },
     {
-        "expedition": "R6A2",
+        "expedition": "R6AX",
         "zone": 20,
         "id": 3889683438,
         "name": "QKL-RFH-4ZX"
@@ -636,25 +636,25 @@
         "name": "BBB-N12-LOW"
     },
     {
-        "expedition": "R6B3",
+        "expedition": "R6BX",
         "zone": 181,
         "id": 587510794,
         "name": "J77-MNB-CXZ"
     },
     {
-        "expedition": "R6B3",
+        "expedition": "R6BX",
         "zone": 186,
         "id": 3607696028,
         "name": "20V-M6M-2X9"
     },
     {
-        "expedition": "R6B3",
+        "expedition": "R6BX",
         "zone": 190,
         "id": 2181231598,
         "name": "D34-4HG-8AE"
     },
     {
-        "expedition": "R6B3",
+        "expedition": "R6BX",
         "zone": 249,
         "id": 2936981195,
         "name": "LWA-519-3VX"
@@ -750,13 +750,13 @@
         "name": "MQQ-792-B8L"
     },
     {
-        "expedition": "R6C4",
+        "expedition": "R6CX",
         "zone": 80,
         "id": 4016957134,
         "name": "W35-9BV-EUV"
     },
     {
-        "expedition": "R6C4",
+        "expedition": "R6CX",
         "zone": 81,
         "id": 1070298538,
         "name": "7JY-T12-ESQ"
