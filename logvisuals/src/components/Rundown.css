@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+.content .text{
+  color: #fff;
+  font-weight: 700;
+  font-size: 25px;
+  padding: 20px;
+}
+
+.content .text::before,
+.content .text::after{
+  padding: 20px;
+  color: white;
+  content: attr(data-text);
+  position: absolute;
+  background: black;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  text-shadow: none;
+}
+
+.content .text::before{
+  left: 0.2vw;
+  text-shadow: -2px;
+  animation: glitch-1 1s infinite reverse; 
+}
+
+.content .text::after{
+  left: -0.2vw;
+  text-shadow: -2px 0 blue;
+  animation: glitch-2 5s linear infinite reverse; 
+}
+
+@keyframes glitch-1 {
+  0% {
+    clip: rect(15vh, auto, 11.5vh, 2vw);
+  }
+  5% {
+    clip: rect(2vh, auto, 8vh, 3vw);
+  }
+  10% {
+    clip: rect(4.5vh, auto, 5.5vh, 1vw);
+  }
+  15% {
+    clip: rect(10vh, auto, 6.5vh, 4vw);
+  }
+  20% {
+    clip: rect(15vh, auto, 4.5vh, 2.5vw);
+  }
+  25% {
+    clip: rect(3.5vh, auto, 1.5vh, 5vw);
+  }
+  30% {
+    clip: rect(14.5vh, auto, 8vh, 2vw);
+  }
+  35% {
+    clip: rect(8vh, auto, 12vh, 3.5vw);
+  }
+  40% {
+    clip: rect(6.5vh, auto, 14vh, 4vw);
+  }
+  45% {
+    clip: rect(3.5vh, auto, 9vh, 1.5vw);
+  }
+  50% {
+    clip: rect(2.5vh, auto, 7vh, 3vw);
+  }
+  55% {
+    clip: rect(7.5vh, auto, 6vh, 2.5vw);
+  }
+  60% {
+    clip: rect(1vh, auto, 12.5vh, 4vw);
+  }
+  65% {
+    clip: rect(8vh, auto, 13.5vh, 2vw);
+  }
+  70% {
+    clip: rect(12vh, auto, 1.5vh, 3vw);
+  }
+  75% {
+    clip: rect(2vh, auto, 8vh, 4vw);
+  }
+  80% {
+    clip: rect(7.5vh, auto, 4vh, 1vw);
+  }
+  85% {
+    clip: rect(14.5vh, auto, 8vh, 3vw);
+  }
+  90% {
+    clip: rect(4.5vh, auto, 14.5vh, 5vw);
+  }
+  95% {
+    clip: rect(8vh, auto, 11.5vh, 3vw);
+  }
+  100% {
+    clip: rect(1.5vh, auto, 11.5vh, 2vw);
+  }
+}
+
+@keyframes glitch-2 {
+  0% {
+    clip: rect(15vh, auto, 11.5vh, 2vw);
+  }
+  5% {
+    clip: rect(2vh, auto, 8vh, 3vw);
+  }
+  10% {
+    clip: rect(4.5vh, auto, 5.5vh, 1vw);
+  }
+  15% {
+    clip: rect(10vh, auto, 6.5vh, 4vw);
+  }
+  20% {
+    clip: rect(15vh, auto, 4.5vh, 2.5vw);
+  }
+  25% {
+    clip: rect(3.5vh, auto, 1.5vh, 5vw);
+  }
+  30% {
+    clip: rect(14.5vh, auto, 8vh, 2vw);
+  }
+  35% {
+    clip: rect(8vh, auto, 12vh, 3.5vw);
+  }
+  40% {
+    clip: rect(6.5vh, auto, 14vh, 4vw);
+  }
+  45% {
+    clip: rect(3.5vh, auto, 9vh, 1.5vw);
+  }
+  50% {
+    clip: rect(2.5vh, auto, 7vh, 3vw);
+  }
+  55% {
+    clip: rect(7.5vh, auto, 6vh, 2.5vw);
+  }
+  60% {
+    clip: rect(1vh, auto, 12.5vh, 4vw);
+  }
+  65% {
+    clip: rect(8vh, auto, 13.5vh, 2vw);
+  }
+  70% {
+    clip: rect(12vh, auto, 1.5vh, 3vw);
+  }
+  75% {
+    clip: rect(2vh, auto, 8vh, 4vw);
+  }
+  80% {
+    clip: rect(7.5vh, auto, 4vh, 1vw);
+  }
+  85% {
+    clip: rect(14.5vh, auto, 8vh, 3vw);
+  }
+  90% {
+    clip: rect(4.5vh, auto, 14.5vh, 5vw);
+  }
+  95% {
+    clip: rect(8vh, auto, 11.5vh, 3vw);
+  }
+  100% {
+    clip: rect(1.5vh, auto, 11.5vh, 2vw);
+  }
+}

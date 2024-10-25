@@ -1,81 +1,75 @@
 import { useEffect, useState } from "react";
-import Log from "../types/log";
+import Log from "../types/Log";
+import "./Rundown.css";
+import Grid from "@mui/material/Grid2";
+import RundownGeneral from "./RundownTemplate/RundownGeneral";
+import useRundownLogs from "../hooks/useRundownLogs";
+import { Stack } from "@mui/material";
 interface RundownProps {
   currentRundown: number;
   logData: Log[];
 }
 
-type level = { 
-  [expedition: string]: Log[];
-}
+const Rundown: React.FC<RundownProps> = ({ currentRundown, logData }) => {
+  const rundownLogs = useRundownLogs(currentRundown, logData);
 
-const Rundown: React.FC<RundownProps> = ({currentRundown, logData}) => {
-  const [rundownLogs, setRundownLogs] = useState<level>({});
-
-  const getLogsByPage = (pageNumber: Number) => {
-    const prefix = `R${pageNumber}`;
-    return logData.filter((log : Log) => log.expedition.startsWith(prefix));
-  };
-  
-  useEffect(() => {
-    const rundownLogs = getLogsByPage(currentRundown);
-    let updatedLogs: { [key: string]: Log[] } = {}; 
-    let note = "";
-  
-    rundownLogs.forEach((log) => {
-      switch (log.name) {
-        case "SK8-G25-G65":
-          note = "This log is in the original dimension";
-          break;
-        case "266-912-663":
-          note = "This log is in the giant dimension";
-          break;
-        case "226-CAQ-PLK":
-          note = "This log is in the charger dimension";
-          break;
-        case "7JH-02P-EWG":
-          note = "This log is in the fog dimension";
-          break;
-        case "FTJ-8GE-T1R":
-          note = "This log is in the original dimension";
-          break;
-        default:
-          note = ""; 
-      }
-
-      const detailedLog = { ...log, note };
-  
-      if (!updatedLogs[log.expedition]) {
-        updatedLogs[log.expedition] = [detailedLog]; 
-      } else {
-        updatedLogs[log.expedition].push(detailedLog); 
-      }
-    });
-  
-    setRundownLogs(updatedLogs); 
-  }, [currentRundown, logData]);
-  
-
-  return <>
-    {
-      Object.keys(rundownLogs).map((expedition) => {
-        return (
-          <div key={expedition}>
-            <h2>{expedition}</h2>
-            {/* <ul>
-              {rundownLogs[expedition].map((log) => {
+  return (
+    <>
+      <Stack>
+        {Object.keys(rundownLogs).map((tier) => {
+          return (
+            <div key={tier}>
+              <h2>{tier}</h2>
+              {Object.keys(rundownLogs[tier]).map((level) => {
                 return (
-                  <li key={log.id}>
-                    {log.name} {log.zone}
-                  </li>
+                  <div key={level}>
+                    <h3>{level}</h3>
+                    {rundownLogs[tier][level].map((log) => {
+                      return (
+                        <div key={log.id} className="log">
+                          {}
+                        </div>
+                      );
+                    })}
+                  </div>
                 );
               })}
-            </ul> */}
-          </div>
-        );
-      })
-    }
-  </>;
+            </div>
+          );
+        })}
+      </Stack>
+    </>
+  );
 };
 
 export default Rundown;
+// {rundownLogs.map((log) => {
+//   return (
+//     <Grid
+//       container
+//       padding="0 20px"
+//       border="4px solid white"
+//       position="relative"
+//       className="content"
+//       key={log.expedition}
+//     >
+//       <Grid
+//         padding="0 20px"
+//         position="relative"
+//         className="text"
+//         data-text={log.expedition}
+//       >
+//         {log.expedition}
+//       </Grid>
+//       {/* <ul>
+//         {rundownLogs[expedition].map((log) => {
+//           return (
+//             <li key={log.id}>
+//               {log.name} {log.zone}
+//             </li>
+//           );
+//         })}
+//       </ul> */}
+//     </Grid>
+//   );
+// })}

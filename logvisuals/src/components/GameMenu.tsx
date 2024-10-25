@@ -229,12 +229,14 @@ const GameMenu: React.FC<GameMenuProps> = ({
 
 export default GameMenu;
 
-// deviation, infection, the vessel, contact, rebirth, destination, rise, duality
-
 // TODO:
 // * Fuzzy Overlay --------------------------------------------------------- Complete
 // * Card Rundowns --------------------------------------------------------- Complete
-// * upload button (red white right side like clipboard)
-// * Table Glitch Levels
-// * hyperlexed text
-// * cleared green alert page, grayed out checkmark
+// * upload button (red white right side like clipboard) ------------------- Complete
+// * Table Glitch Levels --------------------------------------------------- Complete
+// * Hyperplexed text & Drawer
+// * Cleared green alert page, grayed out checkmark
+// * Thanks & Relative Info
+// * Transition from GameMenu to Rundown 
+// * Music & Background
+// * Deployment
