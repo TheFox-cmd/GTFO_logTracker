@@ -33,6 +33,9 @@ const useRundownLogs = (currentRundown: number, logData: Log[]) => {
         case "FTJ-8GE-T1R":
           note = "This log is in the original dimension";
           break;
+        case "2MD-N3H-SYH": 
+          note = "This log in R8C1 and R8C2 are canonically the same room";
+          break;
         default:
           note = "";
       }
