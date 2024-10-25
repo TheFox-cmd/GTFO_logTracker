@@ -15,13 +15,65 @@ interface GameMenuProps {
   setSelectRundown: (selectRundown: boolean) => void;
 }
 
+type MenuItem = {
+  image: string
+  title: string
+}
+
+const Menus: MenuItem[] = [
+  {
+    image: R1,
+    title: "ALT://RUNDOWN 1.0 - DEVIATION"
+  },
+  {
+    image: R2,
+    title: "ALT://RUNDOWN 2.0 - INFECTION"
+  },
+  {
+    image: R3,
+    title: "ALT://RUNDOWN 3.0 - THE VESSEL"
+  },
+  {
+    image: R4,
+    title: "ALT://RUNDOWN 4.0 - CONTACT"
+  },
+  {
+    image: R5,
+    title: "ALT://RUNDOWN 5.0 - REBIRTH"
+  },
+  {
+    image: R6,
+    title: "ALT://RUNDOWN 6.0 - DESTINATION"
+  },
+  {
+    image: R7,
+    title: "RUNDOWN 7.0 - RISE"
+  },
+  {
+    image: R8,
+    title: "RUNDOWN 8.0 - DUALITY"
+  },
+]
+
 const GameMenu: React.FC<GameMenuProps> = ({
   setCurrentRundown,
   setSelectRundown,
 }) => {
+  const makeMediaStyle = (id: number) => {
+    const commonMediaStyle = {
+      height: "8vh",
+      transition: "height 0.3s cubic-bezier(0.4, 0.8, 0.25, 1)", 
+      "&:hover": {
+        height: "12vh", 
+      }}
+    if (id === 1) return {...commonMediaStyle, objectFit: "cover", objectPosition: "0 22%"};
+    else return commonMediaStyle;
+  }
+  
   return (
     <Stack spacing={2} width="100%" alignItems="center">
-      <Card
+      {Menus.map((item, idx) => 
+        <Card
         sx={{
           width: "40%",
           bgcolor: "transparent",
@@ -29,200 +81,17 @@ const GameMenu: React.FC<GameMenuProps> = ({
           position: "relative",
         }}
         onClick={() => {
-          setCurrentRundown(1);
+          setCurrentRundown(idx + 1);
           setSelectRundown(true);
         }}
       >
         <CardMedia
           component={"img"}
-          image={R1}
-          title="ALT://RUNDOWN 1.0 - DEVIATION"
-          sx={{
-            height: "8vh",
-            transition: "height 0.3s cubic-bezier(0.4, 0.8, 0.25, 1)", 
-            "&:hover": {
-              height: "12vh", 
-            },
-          }}
+          image={item.image}
+          title={item.title}
+          sx={makeMediaStyle(idx)}
         />
-      </Card>
-      <Card
-        sx={{
-          width: "40%",
-          bgcolor: "transparent",
-          boxShadow: "none",
-          position: "relative",
-        }}
-        onClick={() => {
-          setCurrentRundown(2);
-          setSelectRundown(true);
-        }}
-      >
-        <CardMedia
-          component={"img"}
-          image={R2}
-          title="ALT://RUNDOWN 2.0 - INFECTION"
-          sx={{
-            height: "8vh",
-            objectFit: "cover",
-            objectPosition: "0 22%",
-            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
-            "&:hover": {
-              height: "12vh", 
-            },
-          }}
-        />
-      </Card>
-      <Card
-        sx={{
-          width: "40%",
-          bgcolor: "transparent",
-          boxShadow: "none",
-          position: "relative",
-        }}
-        onClick={() => {
-          setCurrentRundown(3);
-          setSelectRundown(true);
-        }}
-      >
-        <CardMedia
-          component={"img"}
-          image={R3}
-          title="ALT://RUNDOWN 3.0 - THE VESSEL"
-          sx={{
-            height: "8vh",
-            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
-            "&:hover": {
-              height: "12vh", 
-            },
-          }}
-        />
-      </Card>
-      <Card
-        sx={{
-          width: "40%",
-          bgcolor: "transparent",
-          boxShadow: "none",
-          position: "relative",
-        }}
-        onClick={() => {
-          setCurrentRundown(4);
-          setSelectRundown(true);
-        }}
-      >
-        <CardMedia
-          component={"img"}
-          image={R4}
-          title="ALT://RUNDOWN 4.0 - CONTACT"
-          sx={{
-            height: "8vh",
-            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
-            "&:hover": {
-              height: "12vh", 
-            },
-          }}
-        />
-      </Card>
-      <Card
-        sx={{
-          width: "40%",
-          bgcolor: "transparent",
-          boxShadow: "none",
-          position: "relative",
-        }}
-        onClick={() => {
-          setCurrentRundown(5);
-          setSelectRundown(true);
-        }}
-      >
-        <CardMedia
-          component={"img"}
-          image={R5}
-          title="ALT://RUNDOWN 5.0 - REBIRTH"
-          sx={{
-            height: "8vh",
-            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
-            "&:hover": {
-              height: "12vh", 
-            },
-          }}
-        />
-      </Card>
-      <Card
-        sx={{
-          width: "40%",
-          bgcolor: "transparent",
-          boxShadow: "none",
-          position: "relative",
-        }}
-        onClick={() => {
-          setCurrentRundown(6);
-          setSelectRundown(true);
-        }}
-      >
-        <CardMedia
-          component={"img"}
-          image={R6}
-          title="ALT://RUNDOWN 6.0 - DESTINATION"
-          sx={{
-            height: "8vh",
-            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
-            "&:hover": {
-              height: "12vh", 
-            },
-          }}
-        />
-      </Card>
-      <Card
-        sx={{
-          width: "40%",
-          bgcolor: "transparent",
-          boxShadow: "none",
-          position: "relative",
-        }}
-        onClick={() => {
-          setCurrentRundown(7);
-          setSelectRundown(true);
-        }}
-      >
-        <CardMedia
-          component={"img"}
-          image={R7}
-          title="RUNDOWN 7.0 - RISE"
-          sx={{
-            height: "8vh",
-            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
-            "&:hover": {
-              height: "12vh", 
-            },
-          }}
-        />
-      </Card>
-      <Card
-        sx={{
-          width: "40%",
-          bgcolor: "transparent",
-          boxShadow: "none",
-          position: "relative",
-        }}
-        onClick={() => {
-          setCurrentRundown(8);
-          setSelectRundown(true);
-        }}
-      >
-        <CardMedia
-          component={"img"}
-          image={R8}
-          title="RUNDOWN 8.0 - DUALITY"
-          sx={{
-            height: "8vh",
-            transition: "height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", 
-            "&:hover": {
-              height: "12vh", 
-            },
-          }}
-        />
-      </Card>
+      </Card>)}
     </Stack>
   );
 };
