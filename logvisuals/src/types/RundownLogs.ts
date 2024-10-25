@@ -1,7 +1,5 @@
 import Log from "./Log";
 
-type RundownLogs = {
-  [expedition: string]: Log[];
-};
+type RundownLogs = Record<string, Log[]>;
 
 export default RundownLogs;

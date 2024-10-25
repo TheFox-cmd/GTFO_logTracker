@@ -8,7 +8,7 @@ type Tier = Record<string, Level>;
 const useRundownLogs = (currentRundown: number, logData: Log[]) => {
   function getCurrentRundownLogsData() {
     // * Updated Each Log of the Rundown with a Note
-    const getLogsByPage = (pageNumber: Number) => {
+    const getLogsByPage = (pageNumber: number) => {
       const prefix: string = `R${pageNumber}`;
       return logData.filter((log: Log) => log.expedition.startsWith(prefix));
     };
