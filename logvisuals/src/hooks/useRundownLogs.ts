@@ -3,7 +3,6 @@ import { useMemo } from "react";
 
 type Level = Record<string, Log[]>;
 type Tier = Record<string, Level>;
-// Tier = A: [{R5A1: [Log1, Log2], R5A2: [Log3, Log4]}]
 
 const useRundownLogs = (currentRundown: number, logData: Log[]) => {
   function getCurrentRundownLogsData() {

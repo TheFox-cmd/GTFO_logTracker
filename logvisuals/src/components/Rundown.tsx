@@ -15,15 +15,37 @@ const Rundown: React.FC<RundownProps> = ({ currentRundown, logData }) => {
 
   return (
     <>
-      <Stack>
+      <Stack spacing={2} width="100%" alignItems="center">
         {Object.keys(rundownLogs).map((tier) => {
           return (
-            <div key={tier}>
-              <h2>{tier}</h2>
+            <Grid
+              container
+              width="100%"
+              justifyContent="space-evenly"
+              alignItems="center"
+              key={tier}
+            >
               {Object.keys(rundownLogs[tier]).map((level) => {
                 return (
-                  <div key={level}>
-                    <h3>{level}</h3>
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    padding="0 20px"
+                    border="4px solid white"
+                    position="relative"
+                    className="content"
+                    key={level}
+                  >
+                    <Grid
+                      padding="0 20px"
+                      position="relative"
+                      className="text"
+                      data-text={level}
+                    >
+                      {level}
+                    </Grid>
                     {rundownLogs[tier][level].map((log) => {
                       return (
                         <div key={log.id} className="log">
@@ -31,10 +53,10 @@ const Rundown: React.FC<RundownProps> = ({ currentRundown, logData }) => {
                         </div>
                       );
                     })}
-                  </div>
+                  </Grid>
                 );
               })}
-            </div>
+            </Grid>
           );
         })}
       </Stack>
@@ -43,33 +65,3 @@ const Rundown: React.FC<RundownProps> = ({ currentRundown, logData }) => {
 };
 
 export default Rundown;
-// {rundownLogs.map((log) => {
-//   return (
-//     <Grid
-//       container
-//       padding="0 20px"
-//       border="4px solid white"
-//       position="relative"
-//       className="content"
-//       key={log.expedition}
-//     >
-//       <Grid
-//         padding="0 20px"
-//         position="relative"
-//         className="text"
-//         data-text={log.expedition}
-//       >
-//         {log.expedition}
-//       </Grid>
-//       {/* <ul>
-//         {rundownLogs[expedition].map((log) => {
-//           return (
-//             <li key={log.id}>
-//               {log.name} {log.zone}
-//             </li>
-//           );
-//         })}
-//       </ul> */}
-//     </Grid>
-//   );
-// })}
