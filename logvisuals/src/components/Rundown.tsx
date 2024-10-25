@@ -4,7 +4,7 @@ import "./Rundown.css";
 import Grid from "@mui/material/Grid2";
 import RundownGeneral from "./RundownTemplate/RundownGeneral";
 import useRundownLogs from "../hooks/useRundownLogs";
-import { Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 interface RundownProps {
   currentRundown: number;
   logData: Log[];
@@ -15,26 +15,43 @@ const Rundown: React.FC<RundownProps> = ({ currentRundown, logData }) => {
 
   return (
     <>
-      <Stack>
+      <Stack spacing={2} width="100%" alignItems="center">
         {Object.keys(rundownLogs).map((tier) => {
           return (
-            <div key={tier}>
-              <h2>{tier}</h2>
+            <Grid
+              container
+              width="100%"
+              justifyContent="space-evenly"
+              alignItems="center"
+              key={tier}
+            >
+              {/* Move to rundown layout */}
               {Object.keys(rundownLogs[tier]).map((level) => {
                 return (
-                  <div key={level}>
-                    <h3>{level}</h3>
-                    {rundownLogs[tier][level].map((log) => {
-                      return (
-                        <div key={log.id} className="log">
-                          {}
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    padding="0 20px"
+                    border="4px solid white"
+                    position="relative"
+                    className="content"
+                    key={level}
+                  >
+                    <Grid
+                      padding="0 20px"
+                      position="relative"
+                      className="text"
+                      data-text={level}
+                      onClick={() => console.log(rundownLogs[tier][level])}
+                    >
+                      {level}
+                    </Grid>
+                  </Grid>
                 );
               })}
-            </div>
+            </Grid>
           );
         })}
       </Stack>
@@ -43,33 +60,13 @@ const Rundown: React.FC<RundownProps> = ({ currentRundown, logData }) => {
 };
 
 export default Rundown;
-// {rundownLogs.map((log) => {
-//   return (
-//     <Grid
-//       container
-//       padding="0 20px"
-//       border="4px solid white"
-//       position="relative"
-//       className="content"
-//       key={log.expedition}
-//     >
-//       <Grid
-//         padding="0 20px"
-//         position="relative"
-//         className="text"
-//         data-text={log.expedition}
-//       >
-//         {log.expedition}
-//       </Grid>
-//       {/* <ul>
-//         {rundownLogs[expedition].map((log) => {
-//           return (
-//             <li key={log.id}>
-//               {log.name} {log.zone}
-//             </li>
-//           );
-//         })}
-//       </ul> */}
-//     </Grid>
-//   );
-// })}
+
+
+// TODO: 
+// 1. Refactor Rundown to RundownGeneralLayout
+// 2. Refactor Level (Border-left) and progress bar
+// 3. New Component for each level
+// 4. Render Successful Logs
+// 5. Thank you letter and How to upload
+// 6. Styling 
+// 7. Interactivity 

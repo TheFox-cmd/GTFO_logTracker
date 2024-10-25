@@ -3,7 +3,6 @@ import { useMemo } from "react";
 
 type Level = Record<string, Log[]>;
 type Tier = Record<string, Level>;
-// Tier = A: [{R5A1: [Log1, Log2], R5A2: [Log3, Log4]}]
 
 const useRundownLogs = (currentRundown: number, logData: Log[]) => {
   function getCurrentRundownLogsData() {
@@ -33,6 +32,9 @@ const useRundownLogs = (currentRundown: number, logData: Log[]) => {
           break;
         case "FTJ-8GE-T1R":
           note = "This log is in the original dimension";
+          break;
+        case "2MD-N3H-SYH": 
+          note = "This log in R8C1 and R8C2 are canonically the same room";
           break;
         default:
           note = "";
