@@ -85,6 +85,7 @@ const GameMenu: React.FC<GameMenuProps> = ({
           setCurrentRundown(idx + 1);
           setSelectRundown(true);
         }}
+        key={idx}
       >
         <CardMedia
           component={"img"}

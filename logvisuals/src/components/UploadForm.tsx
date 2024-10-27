@@ -1,6 +1,7 @@
 import { Button, FormControl, Input } from "@mui/material";
 import React, { useRef } from "react";
 import usePlayerLog from "../hooks/usePlayerLog";
+import ProgressButton from "./ProgressButton";
 
 const UploadForm = () => {
   const { uploadFile } = usePlayerLog();
@@ -28,24 +29,10 @@ const UploadForm = () => {
           display: "none", 
         }}
       />
-      <Button
-        variant="outlined"
-        component="span"
-        onClick={handleButtonClick} 
-        sx={{
-          border: "3px solid red",
-          color: "red",
-          height: "100%",
-          bgcolor: "transparent",
-          "&:hover": {
-            bgcolor: "transparent",
-          },
-        }}
-      >
-        UPLOAD
-      </Button>
+      <ProgressButton onClick={handleButtonClick} text={"UPLOAD"} isUpload />
     </FormControl>
   );
 };
 
 export default UploadForm;
+

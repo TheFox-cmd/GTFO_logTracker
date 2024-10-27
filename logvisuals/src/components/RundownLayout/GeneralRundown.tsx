@@ -2,6 +2,7 @@ import useRundownLogs from "../../hooks/useRundownLogs";
 import { RundownProps } from "../../types/Rundown";
 import Grid from "@mui/material/Grid2";
 import { Stack } from "@mui/material";
+import LevelModal from "./LevelModal";
 
 const RundownGeneral: React.FC<RundownProps> = ({
   currentRundown,
@@ -28,7 +29,6 @@ const RundownGeneral: React.FC<RundownProps> = ({
                     justifyContent="center"
                     alignItems="center"
                     padding="0 20px"
-                    border="4px solid white"
                     position="relative"
                     className="content"
                     key={level}
@@ -40,7 +40,7 @@ const RundownGeneral: React.FC<RundownProps> = ({
                       data-text={level}
                       onClick={() => console.log(rundownLogs[tier][level])}
                     >
-                      {level}
+                      <LevelModal level={level} logs={rundownLogs[tier][level]} />
                     </Grid>
                   </Grid>
                 );

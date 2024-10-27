@@ -6,10 +6,11 @@ import FuzzyOverlay from "./FuzzyOverlay";
 import { useState } from "react";
 import UploadForm from "./UploadForm";
 import { Button } from "@mui/material";
-import GeneralRundown from "./RundownLayout/GeneralRundown"
+import GeneralRundown from "./RundownLayout/GeneralRundown";
 import RundownSix from "./RundownLayout/RundownSix";
 import RundownSeven from "./RundownLayout/RundownSeven";
 import RundownEight from "./RundownLayout/RundownEight";
+import ProgressButton from "./ProgressButton";
 
 const LogTable = () => {
   const { logData, loading, error } = useLogs();
@@ -31,30 +32,16 @@ const LogTable = () => {
           <Grid
             container
             size={2}
-            border="1px solid red"
             justifyContent="center"
             alignItems="center"
             // height="100vh"
           >
             {/* Special Thanks */}
             {selectRundown ? (
-              <Button
-                variant="outlined"
-                component="span"
+              <ProgressButton
                 onClick={() => setSelectRundown(false)}
-                sx={{
-                  border: "3px solid white",
-                  color: "white",
-                  height: "100%",
-                  width: "70%",
-                  bgcolor: "transparent",
-                  "&:hover": {
-                    bgcolor: "transparent",
-                  },
-                }}
-              >
-                Select Rundown
-              </Button>
+                text={"SELECT RUNDOWN"}
+              />
             ) : (
               <div></div>
             )}
@@ -69,10 +56,24 @@ const LogTable = () => {
             height="100vh"
           >
             {selectRundown ? (
-                currentRundown === 6 ? <RundownSix currentRundown={currentRundown} logData={logData} /> : 
-                currentRundown === 7 ? <RundownSeven currentRundown={currentRundown} logData={logData} /> :
-                currentRundown === 8 ? <RundownEight currentRundown={currentRundown} logData={logData} /> :
-                <GeneralRundown currentRundown={currentRundown} logData={logData} />
+              currentRundown === 6 ? (
+                <RundownSix currentRundown={currentRundown} logData={logData} />
+              ) : currentRundown === 7 ? (
+                <RundownSeven
+                  currentRundown={currentRundown}
+                  logData={logData}
+                />
+              ) : currentRundown === 8 ? (
+                <RundownEight
+                  currentRundown={currentRundown}
+                  logData={logData}
+                />
+              ) : (
+                <GeneralRundown
+                  currentRundown={currentRundown}
+                  logData={logData}
+                />
+              )
             ) : (
               <GameMenu
                 setCurrentRundown={setCurrentRundown}
@@ -83,7 +84,6 @@ const LogTable = () => {
           <Grid
             container
             size={2}
-            border="1px solid red"
             justifyContent="center"
             alignItems="center"
           >

@@ -3,7 +3,8 @@ type Log = {
   "zone": number,
   "id": number,
   "name": string,
-  "note"?: string
+  "note"?: string,
+  "objective"?: "Main" | "Secondary" | "Overload"
 }
 
 type RundownLogs = Record<string, Log[]>;
