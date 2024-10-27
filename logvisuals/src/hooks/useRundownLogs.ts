@@ -1,4 +1,4 @@
-import Log from "../types/Log";
+import { Log } from "../types/Rundown";
 import { useMemo } from "react";
 
 type Level = Record<string, Log[]>;

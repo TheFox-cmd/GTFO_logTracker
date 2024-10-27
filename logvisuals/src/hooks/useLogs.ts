@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Log from '../types/Log';
+import Log from '../types/Rundown';
 
 const useLogs = () => {
 

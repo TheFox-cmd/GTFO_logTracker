@@ -4,9 +4,12 @@ import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import FuzzyOverlay from "./FuzzyOverlay";
 import { useState } from "react";
-import Rundown from "./Rundown";
 import UploadForm from "./UploadForm";
 import { Button } from "@mui/material";
+import GeneralRundown from "./RundownLayout/GeneralRundown"
+import RundownSix from "./RundownLayout/RundownSix";
+import RundownSeven from "./RundownLayout/RundownSeven";
+import RundownEight from "./RundownLayout/RundownEight";
 
 const LogTable = () => {
   const { logData, loading, error } = useLogs();
@@ -66,7 +69,10 @@ const LogTable = () => {
             height="100vh"
           >
             {selectRundown ? (
-              <Rundown currentRundown={currentRundown} logData={logData} />
+                currentRundown === 6 ? <RundownSix currentRundown={currentRundown} logData={logData} /> : 
+                currentRundown === 7 ? <RundownSeven currentRundown={currentRundown} logData={logData} /> :
+                currentRundown === 8 ? <RundownEight currentRundown={currentRundown} logData={logData} /> :
+                <GeneralRundown currentRundown={currentRundown} logData={logData} />
             ) : (
               <GameMenu
                 setCurrentRundown={setCurrentRundown}
