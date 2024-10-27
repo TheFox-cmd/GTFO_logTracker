@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
-import Log from "../types/Log";
-import "./Rundown.css";
+import useRundownLogs from "../../hooks/useRundownLogs";
+import { RundownProps } from "../../types/Rundown";
 import Grid from "@mui/material/Grid2";
-import RundownGeneral from "./RundownTemplate/RundownGeneral";
-import useRundownLogs from "../hooks/useRundownLogs";
-import { Button, Stack } from "@mui/material";
-interface RundownProps {
-  currentRundown: number;
-  logData: Log[];
-}
+import { Stack } from "@mui/material";
 
-const Rundown: React.FC<RundownProps> = ({ currentRundown, logData }) => {
+const RundownGeneral: React.FC<RundownProps> = ({
+  currentRundown,
+  logData,
+}) => {
   const rundownLogs = useRundownLogs(currentRundown, logData);
-
   return (
     <>
       <Stack spacing={2} width="100%" alignItems="center">
@@ -25,7 +20,6 @@ const Rundown: React.FC<RundownProps> = ({ currentRundown, logData }) => {
               alignItems="center"
               key={tier}
             >
-              {/* Move to rundown layout */}
               {Object.keys(rundownLogs[tier]).map((level) => {
                 return (
                   <Grid
@@ -59,14 +53,4 @@ const Rundown: React.FC<RundownProps> = ({ currentRundown, logData }) => {
   );
 };
 
-export default Rundown;
-
-
-// TODO: 
-// 1. Refactor Rundown to RundownGeneralLayout
-// 2. Refactor Level (Border-left) and progress bar
-// 3. New Component for each level
-// 4. Render Successful Logs
-// 5. Thank you letter and How to upload
-// 6. Styling 
-// 7. Interactivity 
+export default RundownGeneral;
