@@ -14,7 +14,7 @@ import RundownEight from "./RundownLayout/RundownEight";
 const LogTable = () => {
   const { logData, loading, error } = useLogs();
   const [currentRundown, setCurrentRundown] = useState<number>(0);
-  const [selectRundown, setSelectRundown] = useState<Boolean>(false);
+  const [selectRundown, setSelectRundown] = useState<boolean>(false);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

@@ -9,10 +9,11 @@ import R6 from "../assets/ALT_R6_Banner.png";
 import R7 from "../assets/R7Banner.png";
 import R8 from "../assets/R8Banner.png";
 import Stack from "@mui/material/Stack";
+import {ReactSetState} from "../types/Utils";
 
 interface GameMenuProps {
-  setCurrentRundown: (rundown: number) => void;
-  setSelectRundown: (selectRundown: boolean) => void;
+  setCurrentRundown: ReactSetState<number>;
+  setSelectRundown: ReactSetState<boolean>;
 }
 
 type MenuItem = {
