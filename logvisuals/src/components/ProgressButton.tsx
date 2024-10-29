@@ -8,21 +8,29 @@ interface ProgressButtonProps {
 }
 
 interface HoldButtonProps {
-  onClick : () => void;
-  text : string;
-  isUpload? : boolean;
+  onClick: () => void;
+  text: string;
+  isUpload?: boolean;
 }
 
-const ProgressButtonStyling = styled(Button)<ProgressButtonProps>(({ progress, isUpload }) => ({
-  background: isUpload ? `linear-gradient(to right, rgba(255, 0, 0, 0.2) ${progress}%, transparent ${progress}%)` : `linear-gradient(to right, rgba(255, 255, 255, 0.2) ${progress}%, transparent ${progress}%)`,
+const ProgressButtonStyling = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "isUpload",
+})<ProgressButtonProps>(({ progress, isUpload }) => ({
+  background: isUpload
+    ? `linear-gradient(to right, rgba(255, 0, 0, 0.2) ${progress}%, transparent ${progress}%)`
+    : `linear-gradient(to right, rgba(255, 255, 255, 0.2) ${progress}%, transparent ${progress}%)`,
   color: isUpload ? "red" : "white",
   border: isUpload ? "2px solid red" : "2px solid white",
-  borderLeftWidth: "12px", 
+  borderLeftWidth: "12px",
   position: "relative",
-  borderRadius: "0"
+  borderRadius: "0",
 }));
 
-const ProgressButton : React.FC<HoldButtonProps> = ({ onClick, text, isUpload = false }) => {
+const ProgressButton: React.FC<HoldButtonProps> = ({
+  onClick,
+  text,
+  isUpload = false,
+}) => {
   const [progress, setProgress] = useState(0);
   const timerRef = useRef<number | null>(null);
 
@@ -36,10 +44,9 @@ const ProgressButton : React.FC<HoldButtonProps> = ({ onClick, text, isUpload = 
           clearInterval(timerRef.current);
         }
 
-        // * Trigger OnClick event
-        onClick()
+        onClick();
       }
-    }, 20); 
+    }, 20);
   };
 
   const handleMouseUp = () => {
@@ -62,6 +69,6 @@ const ProgressButton : React.FC<HoldButtonProps> = ({ onClick, text, isUpload = 
       {text}
     </ProgressButtonStyling>
   );
-}
+};
 
 export default ProgressButton;

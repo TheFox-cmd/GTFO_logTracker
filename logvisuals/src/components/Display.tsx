@@ -12,7 +12,7 @@ import RundownSeven from "./RundownLayout/RundownSeven";
 import RundownEight from "./RundownLayout/RundownEight";
 import ProgressButton from "./ProgressButton";
 
-const LogTable = () => {
+const Display = () => {
   const { logData, loading, error } = useLogs();
   const [currentRundown, setCurrentRundown] = useState<number>(0);
   const [selectRundown, setSelectRundown] = useState<boolean>(false);
@@ -96,4 +96,4 @@ const LogTable = () => {
   );
 };
 
-export default LogTable;
+export default Display;
