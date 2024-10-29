@@ -1,15 +1,17 @@
 import { useState } from "react";
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Log } from "../../types/Rundown";
-import { Stack } from "@mui/material";
 import ProgressButton from "../ProgressButton";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-
+import SectorMain from "../../assets/Sector_Main.png";
+import SectorSecondary from "../../assets/Sector_Secondary.png";
+import SectorOverload from "../../assets/Sector_Overload.png";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
 interface LevelModalProps {
   level: string;
   logs: Log[];
@@ -60,6 +62,20 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
                 key={log.name}
                 sx={{ display: "flex", flexDirection: "column" }}
               >
+                {/* set to line height  */}
+                <Card
+                  sx={{
+                    bgcolor: "transparent",
+                    boxShadow: "none",
+                    position: "relative",
+                  }}
+                >
+                  <CardMedia
+                    component={"img"}
+                    image={SectorMain}
+                    title="Sector Main"
+                  />
+                </Card>
                 <Typography className="modal-modal-description" width="100%">
                   Zone: {log.zone}
                 </Typography>
