@@ -1,21 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-.content .text{
-  color: #fff;
-  font-weight: 700;
-  font-size: 25px;
-  padding: 20px;
-}
 
 .content .text::before,
 .content .text::after{
-  padding: 20px;
+  padding: 10px;
   color: white;
   content: attr(data-text);
   position: absolute;
   background: black;
   overflow: hidden;
-  top: 0;
-  left: 0;
+  top: -10px;
   text-shadow: none;
 }
 

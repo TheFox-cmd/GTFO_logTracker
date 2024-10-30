@@ -28,15 +28,11 @@ const RundownGeneral: React.FC<RundownProps> = ({
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
-                    padding="0 20px"
                     position="relative"
-                    className="content"
                     key={level}
                   >
                     <Grid
-                      padding="0 20px"
                       position="relative"
-                      className="text"
                       data-text={level}
                       onClick={() => console.log(rundownLogs[tier][level])}
                     >
