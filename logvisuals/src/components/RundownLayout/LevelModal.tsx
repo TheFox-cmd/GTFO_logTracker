@@ -22,8 +22,6 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  console.log(level, logs);
-
   return (
     <>
       <ProgressButton onClick={handleOpen} text={level} />

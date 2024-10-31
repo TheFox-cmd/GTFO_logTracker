@@ -22,7 +22,13 @@ const Display = () => {
   return (
     <>
       <Box>
-        <Grid container alignItems="center" color="white" columns={10} height={"100vh"}>
+        <Grid
+          container
+          alignItems="center"
+          color="white"
+          columns={10}
+          height={"100vh"}
+        >
           <Grid size={2} justifyContent="center" alignItems="center">
             {/* Special Thanks */}
             {selectRundown ? (
