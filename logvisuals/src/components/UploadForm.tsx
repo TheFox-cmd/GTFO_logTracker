@@ -1,4 +1,4 @@
-import { Button, FormControl, Input } from "@mui/material";
+import { FormControl, Input } from "@mui/material";
 import React, { useRef } from "react";
 import usePlayerLog from "../hooks/usePlayerLog";
 import ProgressButton from "./ProgressButton";

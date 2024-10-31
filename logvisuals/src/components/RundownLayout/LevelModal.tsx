@@ -10,8 +10,7 @@ import ListItem from "@mui/material/ListItem";
 import SectorMain from "../../assets/Sector_Main.png";
 import SectorSecondary from "../../assets/Sector_Secondary.png";
 import SectorOverload from "../../assets/Sector_Overload.png";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
+import Grid from "@mui/material/Grid2";
 interface LevelModalProps {
   level: string;
   logs: Log[];
@@ -49,49 +48,70 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
             alignItems: "left",
             justifyContent: "center",
             outline: "none",
-            padding: 4,
+            padding: 3,
           }}
         >
-          <Typography id="modal-modal-title" variant="h3" component="h3">
+          <Typography id="modal-modal-title" variant="h3" component="h3" padding={1}>
             {level}
           </Typography>
-          <Divider sx={{ borderColor: "gray", padding: 1 }} />
+          <Divider sx={{ borderColor: "gray" }} />
           <List>
             {logs.map((log, index) => (
               <ListItem
                 key={log.name}
-                sx={{ display: "flex", flexDirection: "column" }}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  paddingBottom: 0,
+                }}
               >
-                {/* set to line height  */}
-                <Card
-                  sx={{
-                    bgcolor: "transparent",
-                    boxShadow: "none",
-                    position: "relative",
-                  }}
-                >
-                  <CardMedia
-                    component={"img"}
-                    image={SectorMain}
-                    title="Sector Main"
-                  />
-                </Card>
-                <Typography className="modal-modal-description" width="100%">
-                  Zone: {log.zone}
-                </Typography>
-                <Typography className="modal-modal-description" width="100%">
-                  Log ID: {log.name}
-                </Typography>
-                <Typography className="modal-modal-description" width="100%">
-                  {log.note ? `Note: ${log.note}` : ""}
-                </Typography>
+                <Grid container columns={2} width={"65%"} alignItems={"center"}>
+                  <Grid size={1}>
+                    <Box
+                      justifyContent="center"
+                      alignItems="center"
+                      component="img"
+                      src={
+                        log.placement === "Main"
+                          ? SectorMain
+                          : log.placement === "Secondary"
+                          ? SectorSecondary
+                          : SectorOverload
+                      }
+                    />
+                  </Grid>
+                  <Grid size={1} >
+                    <Typography
+                      className="modal-modal-description"
+                      width="100%"
+                      sx={{textWrap: "nowrap"}}
+                    >
+                      Zone: {log.zone}
+                    </Typography>
+                    <Typography
+                      className="modal-modal-description"
+                      width="100%"
+                      sx={{textWrap: "nowrap"}}
+                    >
+                      Log ID: {log.name}
+                    </Typography>
+                    <Typography
+                      className="modal-modal-description"
+                      width="100%"
+                      sx={{textWrap: "nowrap"}}
+                    >
+                      {log.note ? `Note: ${log.note}` : ""}
+                    </Typography>
+                  </Grid>
+                </Grid>
                 {index < logs.length - 1 && (
                   <Divider
                     sx={{
                       borderColor: "gray",
                       width: "95%",
                       opacity: 0.3,
-                      padding: 1,
+                      padding: 0
                     }}
                   />
                 )}

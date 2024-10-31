@@ -4,7 +4,9 @@ type Log = {
   "id": number,
   "name": string,
   "note"?: string,
-  "objective"?: "Main" | "Secondary" | "Overload"
+  "objective"?: string[]
+  "title"?: string
+  "placement"?: "Main" | "Secondary" | "Overload"
 }
 
 type RundownLogs = Record<string, Log[]>;

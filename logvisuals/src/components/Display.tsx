@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import FuzzyOverlay from "./FuzzyOverlay";
 import { useState } from "react";
 import UploadForm from "./UploadForm";
-import { Button } from "@mui/material";
 import GeneralRundown from "./RundownLayout/GeneralRundown";
 import RundownSix from "./RundownLayout/RundownSix";
 import RundownSeven from "./RundownLayout/RundownSeven";
@@ -23,19 +22,8 @@ const Display = () => {
   return (
     <>
       <Box>
-        <Grid
-          container
-          justifyContent="space-between"
-          alignItems="center"
-          color="white"
-        >
-          <Grid
-            container
-            size={2}
-            justifyContent="center"
-            alignItems="center"
-            // height="100vh"
-          >
+        <Grid container alignItems="center" color="white" columns={10} height={"100vh"}>
+          <Grid size={2} justifyContent="center" alignItems="center">
             {/* Special Thanks */}
             {selectRundown ? (
               <ProgressButton
@@ -46,15 +34,7 @@ const Display = () => {
               <div></div>
             )}
           </Grid>
-          <Grid
-            container
-            size={6}
-            border="1px solid red"
-            justifyContent="center"
-            spacing={2}
-            alignItems="center"
-            height="100vh"
-          >
+          <Grid size={6}>
             {selectRundown ? (
               currentRundown === 6 ? (
                 <RundownSix currentRundown={currentRundown} logData={logData} />
@@ -81,12 +61,7 @@ const Display = () => {
               />
             )}
           </Grid>
-          <Grid
-            container
-            size={2}
-            justifyContent="center"
-            alignItems="center"
-          >
+          <Grid size={2}>
             <UploadForm />
           </Grid>
         </Grid>
