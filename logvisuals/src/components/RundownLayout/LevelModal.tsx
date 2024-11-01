@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,16 +11,26 @@ import SectorMain from "../../assets/Sector_Main.png";
 import SectorSecondary from "../../assets/Sector_Secondary.png";
 import SectorOverload from "../../assets/Sector_Overload.png";
 import Grid from "@mui/material/Grid2";
+import { ParallaxContext } from "../../context/parallax";
 interface LevelModalProps {
   level: string;
   logs: Log[];
 }
 
 const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
+  const setParallax = useContext(ParallaxContext);
+  if (!setParallax) return null;
+  
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    setOpen(true);
+    setParallax(false);
+  };
+  const handleClose = () => {
+    setOpen(false);
+    setParallax(true);
+  };
 
   return (
     <>
@@ -49,7 +59,12 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
             padding: 3,
           }}
         >
-          <Typography id="modal-modal-title" variant="h3" component="h3" padding={1}>
+          <Typography
+            id="modal-modal-title"
+            variant="h3"
+            component="h3"
+            padding={1}
+          >
             {level}
           </Typography>
           <Divider sx={{ borderColor: "gray" }} />
@@ -79,25 +94,25 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
                       }
                     />
                   </Grid>
-                  <Grid size={1} >
+                  <Grid size={1}>
                     <Typography
                       className="modal-modal-description"
                       width="100%"
-                      sx={{textWrap: "nowrap"}}
+                      sx={{ textWrap: "nowrap" }}
                     >
                       Zone: {log.zone}
                     </Typography>
                     <Typography
                       className="modal-modal-description"
                       width="100%"
-                      sx={{textWrap: "nowrap"}}
+                      sx={{ textWrap: "nowrap" }}
                     >
                       Log ID: {log.name}
                     </Typography>
                     <Typography
                       className="modal-modal-description"
                       width="100%"
-                      sx={{textWrap: "nowrap"}}
+                      sx={{ textWrap: "nowrap" }}
                     >
                       {log.note ? `Note: ${log.note}` : ""}
                     </Typography>
@@ -109,7 +124,7 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
                       borderColor: "gray",
                       width: "95%",
                       opacity: 0.3,
-                      padding: 0
+                      padding: 0,
                     }}
                   />
                 )}

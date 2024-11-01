@@ -30,7 +30,7 @@ const RundownGeneral: React.FC<RundownProps> = ({
           >
             {Object.keys(rundownLogs[tier]).map((level) => {
               return (
-                <LevelModal level={level} logs={rundownLogs[tier][level]} />
+                <LevelModal level={level} logs={rundownLogs[tier][level]} key={level} />
               );
             })}
           </Stack>
