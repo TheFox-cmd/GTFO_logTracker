@@ -1,11 +1,12 @@
 import { FormControl, Input } from "@mui/material";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import usePlayerLog from "../hooks/usePlayerLog";
 import ProgressButton from "./ProgressButton";
 
 const UploadForm = () => {
   const { uploadFile } = usePlayerLog();
-  const fileInputRef = useRef<HTMLInputElement | null>(null); 
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -26,7 +27,7 @@ const UploadForm = () => {
         inputProps={{ accept: ".log" }}
         required
         sx={{
-          display: "none", 
+          display: "none",
         }}
       />
       <ProgressButton onClick={handleButtonClick} text={"UPLOAD"} isUpload />
@@ -35,4 +36,3 @@ const UploadForm = () => {
 };
 
 export default UploadForm;
-

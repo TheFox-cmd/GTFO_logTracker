@@ -16,8 +16,8 @@ function App() {
       const { clientX, clientY } = event;
       const { innerWidth, innerHeight } = window;
 
-      const xOffset = - (clientX / innerWidth - 0.5) * 15; 
-      const yOffset = - (clientY / innerHeight - 0.5) * 15; 
+      const xOffset = - (clientX / innerWidth - 0.5) * 7; 
+      const yOffset = - (clientY / innerHeight - 0.5) * 7 ; 
 
       if (parallax) {
         lastXOffset = xOffset;

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -12,6 +12,7 @@ import SectorSecondary from "../../assets/Sector_Secondary.png";
 import SectorOverload from "../../assets/Sector_Overload.png";
 import Grid from "@mui/material/Grid2";
 import { ParallaxContext } from "../../context/parallax";
+
 interface LevelModalProps {
   level: string;
   logs: Log[];
@@ -19,8 +20,17 @@ interface LevelModalProps {
 
 const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
   const setParallax = useContext(ParallaxContext);
+
+  const playerLogs = useMemo(() => {
+    const logsRead = Number.parseInt(sessionStorage.getItem("logsRead") || "0");
+    const confirmedLogs = new Set(JSON.parse(sessionStorage.getItem("confirmedLogs") || "[]"));
+    const unconfirmedLogs = new Set(JSON.parse(sessionStorage.getItem("unconfirmedLogs") || "[]"));
+
+    return { logsRead : logsRead, confirmedLogs : confirmedLogs, unconfirmedLogs : unconfirmedLogs };
+  }, []);
+
   if (!setParallax) return null;
-  
+
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -77,6 +87,7 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
                   flexDirection: "column",
                   alignItems: "flex-start",
                   paddingBottom: 0,
+                  color: playerLogs.confirmedLogs.has(log.id) ? "green" : playerLogs.unconfirmedLogs.has(log.id) ? "yellow" : "white",
                 }}
               >
                 <Grid container columns={2} width={"65%"} alignItems={"center"}>

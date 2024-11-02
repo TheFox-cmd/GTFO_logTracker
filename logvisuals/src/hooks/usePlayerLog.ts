@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 const usePlayerLog = () => {
-  const [logsRead, setLogsRead] = useState<number>(0);
-  const [confirmedIDs, setConfirmedIDs] = useState<number[]>([]);
-  const [unconfirmedIDs, setUnconfirmedIDs] = useState<number[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  function uploadFile(file: File) {
+  const uploadFile = useCallback((file: File) => {
     setSelectedFile(file);
-  }
+  }, []);
+
 
   useEffect(() => {
     if (!selectedFile) return;
@@ -38,10 +36,11 @@ const usePlayerLog = () => {
         const unconfirmedMatch = Array.from(fileContent.matchAll(unconfirmedRegex)); 
         const unconfirmedIDsList = unconfirmedMatch.map(match => parseInt(match[1]));
 
-        setConfirmedIDs(confirmedIDList);
-        setUnconfirmedIDs(unconfirmedIDsList);
-        setLogsRead(confirmedIDList.length + unconfirmedIDsList.length);
         setErrorMessage(null);
+
+        sessionStorage.setItem('confirmedLogs', JSON.stringify(confirmedIDList));
+        sessionStorage.setItem('unconfirmedLogs', JSON.stringify(unconfirmedIDsList));
+        sessionStorage.setItem('logsRead', JSON.stringify(confirmedIDList.length + unconfirmedIDsList.length));
       } catch (error) {
         setErrorMessage('Failed to process the log file.');
         alert(errorMessage);
@@ -52,7 +51,7 @@ const usePlayerLog = () => {
   }, [selectedFile]);
 
 
-  return { logsRead, confirmedIDs, unconfirmedIDs, uploadFile };
+  return { uploadFile };
 }
 
 export default usePlayerLog;

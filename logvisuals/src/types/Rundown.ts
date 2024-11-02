@@ -3,10 +3,10 @@ type Log = {
   zone: number;
   id: number;
   name: string;
+  title?: string;
   placement: "Main" | "Secondary" | "Overload";
   note?: string;
   objective?: string[];
-  title?: string;
 };
 
 type RundownLogs = Record<string, Log[]>;
