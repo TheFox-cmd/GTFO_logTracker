@@ -23,10 +23,18 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
 
   const playerLogs = useMemo(() => {
     const logsRead = Number.parseInt(sessionStorage.getItem("logsRead") || "0");
-    const confirmedLogs = new Set<number>(JSON.parse(sessionStorage.getItem("confirmedLogs") || "[]"));
-    const unconfirmedLogs = new Set<number>(JSON.parse(sessionStorage.getItem("unconfirmedLogs") || "[]"));
+    const confirmedLogs = new Set<number>(
+      JSON.parse(sessionStorage.getItem("confirmedLogs") || "[]")
+    );
+    const unconfirmedLogs = new Set<number>(
+      JSON.parse(sessionStorage.getItem("unconfirmedLogs") || "[]")
+    );
 
-    return { logsRead : logsRead, confirmedLogs : confirmedLogs, unconfirmedLogs : unconfirmedLogs };
+    return {
+      logsRead: logsRead,
+      confirmedLogs: confirmedLogs,
+      unconfirmedLogs: unconfirmedLogs,
+    };
   }, []);
   const [open, setOpen] = useState(false);
 
@@ -41,7 +49,11 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
 
   return (
     <>
-      <ProgressButton onClick={handleOpen} text={level} />
+      <ProgressButton
+        onClick={handleOpen}
+        text={level}
+        isCompleted={logs.every((log) => playerLogs.confirmedLogs.has(log.id))}
+      />
       <Modal
         open={open}
         onClose={handleClose}
@@ -84,7 +96,11 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
                   flexDirection: "column",
                   alignItems: "flex-start",
                   paddingBottom: 0,
-                  color: playerLogs.confirmedLogs.has(log.id) ? "green" : playerLogs.unconfirmedLogs.has(log.id) ? "yellow" : "white",
+                  color: playerLogs.confirmedLogs.has(log.id)
+                    ? "lightgreen"
+                    : playerLogs.unconfirmedLogs.has(log.id)
+                    ? "yellow"
+                    : "white",
                 }}
               >
                 <Grid container columns={2} width={"65%"} alignItems={"center"}>
