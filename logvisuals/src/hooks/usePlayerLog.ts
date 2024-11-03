@@ -41,14 +41,14 @@ const usePlayerLog = () => {
         sessionStorage.setItem('confirmedLogs', JSON.stringify(confirmedIDList));
         sessionStorage.setItem('unconfirmedLogs', JSON.stringify(unconfirmedIDsList));
         sessionStorage.setItem('logsRead', JSON.stringify(confirmedIDList.length + unconfirmedIDsList.length));
-      } catch (error) {
+      } catch {
         setErrorMessage('Failed to process the log file.');
         alert(errorMessage);
       }
     };
 
     processFile();
-  }, [selectedFile]);
+  }, [errorMessage, selectedFile]);
 
 
   return { uploadFile };
