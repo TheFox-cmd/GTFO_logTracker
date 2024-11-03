@@ -16,7 +16,7 @@ const useLogs = () => {
         setLogData(data);
       };
       fetchLogs();
-    } catch (err : any) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);

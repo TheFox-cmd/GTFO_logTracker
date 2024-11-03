@@ -6,10 +6,8 @@ import FuzzyOverlay from "./FuzzyOverlay";
 import { useState } from "react";
 import UploadForm from "./UploadForm";
 import GeneralRundown from "./RundownLayout/GeneralRundown";
-import RundownSix from "./RundownLayout/RundownSix";
-import RundownSeven from "./RundownLayout/RundownSeven";
-import RundownEight from "./RundownLayout/RundownEight";
 import ProgressButton from "./ProgressButton";
+import SpecializedRundown from "./RundownLayout/SpecializedRundown";
 
 const Display = () => {
   const { logData, loading, error } = useLogs();
@@ -42,18 +40,8 @@ const Display = () => {
           </Grid>
           <Grid size={6}>
             {selectRundown ? (
-              currentRundown === 6 ? (
-                <RundownSix currentRundown={currentRundown} logData={logData} />
-              ) : currentRundown === 7 ? (
-                <RundownSeven
-                  currentRundown={currentRundown}
-                  logData={logData}
-                />
-              ) : currentRundown === 8 ? (
-                <RundownEight
-                  currentRundown={currentRundown}
-                  logData={logData}
-                />
+              [6,7,8].includes(currentRundown) ? (
+                <SpecializedRundown currentRundown={currentRundown} logData={logData} />
               ) : (
                 <GeneralRundown
                   currentRundown={currentRundown}

@@ -23,23 +23,20 @@ const LevelModal: React.FC<LevelModalProps> = ({ level, logs }) => {
 
   const playerLogs = useMemo(() => {
     const logsRead = Number.parseInt(sessionStorage.getItem("logsRead") || "0");
-    const confirmedLogs = new Set(JSON.parse(sessionStorage.getItem("confirmedLogs") || "[]"));
-    const unconfirmedLogs = new Set(JSON.parse(sessionStorage.getItem("unconfirmedLogs") || "[]"));
+    const confirmedLogs = new Set<number>(JSON.parse(sessionStorage.getItem("confirmedLogs") || "[]"));
+    const unconfirmedLogs = new Set<number>(JSON.parse(sessionStorage.getItem("unconfirmedLogs") || "[]"));
 
     return { logsRead : logsRead, confirmedLogs : confirmedLogs, unconfirmedLogs : unconfirmedLogs };
   }, []);
-
-  if (!setParallax) return null;
-
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
-    setParallax(false);
+    if (setParallax) setParallax(false);
   };
   const handleClose = () => {
     setOpen(false);
-    setParallax(true);
+    if (setParallax) setParallax(true);
   };
 
   return (
