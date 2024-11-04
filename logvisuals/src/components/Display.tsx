@@ -8,6 +8,7 @@ import UploadForm from "./UploadForm";
 import GeneralRundown from "./RundownLayout/GeneralRundown";
 import ProgressButton from "./ProgressButton";
 import SpecializedRundown from "./RundownLayout/SpecializedRundown";
+// import UploadInfo from "./UploadInfo";
 
 const Display = () => {
   const { logData, loading, error } = useLogs();
@@ -40,8 +41,11 @@ const Display = () => {
           </Grid>
           <Grid size={6}>
             {selectRundown ? (
-              [6,7,8].includes(currentRundown) ? (
-                <SpecializedRundown currentRundown={currentRundown} logData={logData} />
+              [6, 7, 8].includes(currentRundown) ? (
+                <SpecializedRundown
+                  currentRundown={currentRundown}
+                  logData={logData}
+                />
               ) : (
                 <GeneralRundown
                   currentRundown={currentRundown}
@@ -56,6 +60,7 @@ const Display = () => {
             )}
           </Grid>
           <Grid size={2}>
+            {/* <UploadInfo /> */}
             <UploadForm />
           </Grid>
         </Grid>
